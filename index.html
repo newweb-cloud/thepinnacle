@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacBook Tech Desk - Support & Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f7;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: white;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #f5f5f7;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            color: #0071e3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #a8dadc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 48px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Secret Button - Small visible dot */
+        .secret-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .secret-trigger:hover {
+            background: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+            transform: scale(1.5);
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Guide Content */
+        .guide-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 30px;
+        }
+
+        .guide-content h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .guide-content h3 {
+            color: #a8dadc;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .guide-content p, .guide-content li {
+            color: #d0d0d0;
+            margin-bottom: 10px;
+        }
+
+        .guide-content code {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #a8dadc;
+            font-family: monospace;
+        }
+
+        .guide-content ul, .guide-content ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            background: rgba(102, 126, 234, 0.2);
+            color: #a8dadc;
+            padding: 10px 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background: rgba(102, 126, 234, 0.3);
+        }
+
+        /* Scicillians Game Page Styles */
+        .scicillians-page {
+            background: #0d0d14;
+            min-height: 100vh;
+        }
+
+        .scicillians-nav {
+            background: #13131f;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .scicillians-logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #1e1e2e;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            padding: 8px 18px;
+            gap: 10px;
+            width: 260px;
+        }
+
+        .search-bar input {
+            background: none;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .search-bar input::placeholder { color: #666; }
+
+        .categories-bar {
+            background: rgba(255,255,255,0.02);
+            padding: 16px 24px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .cat-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .cat-pill:hover, .cat-pill.active {
+            background: rgba(59,130,246,0.2);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        .games-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .game-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            background: rgba(59,130,246,0.1);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 30px rgba(59,130,246,0.2);
+        }
+
+        .game-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        .game-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #f0f0f0;
+            margin-bottom: 8px;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .game-tag {
+            background: rgba(59,130,246,0.2);
+            color: #60a5fa;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+        }
+
+        /* Game Modal */
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-modal.active { display: flex; }
+
+        .modal-content {
+            background: #13131f;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f0f0f0;
+        }
+
+        .close-btn {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #ef4444;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .fullscreen-btn {
+            background: rgba(59,130,246,0.1);
+            border: 1px solid rgba(59,130,246,0.3);
+            color: #60a5fa;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-right: 10px;
+        }
+
+        .fullscreen-btn:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .modal-body {
+            flex: 1;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* UGS Banner */
+        .ugs-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15));
+            border: 1px solid rgba(139,92,246,0.4);
+            border-radius: 16px;
+            padding: 20px 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 36px;
+        }
+
+        .ugs-banner:hover {
+            background: linear-gradient(135deg, rgba(59,130,246,0.25), rgba(139,92,246,0.25));
+            border-color: rgba(139,92,246,0.7);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139,92,246,0.2);
+        }
+
+        .ugs-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .ugs-banner-icon {
+            font-size: 2.8rem;
+        }
+
+        .ugs-banner-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e0d7ff;
+            margin-bottom: 4px;
+        }
+
+        .ugs-banner-sub {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .ugs-banner-arrow {
+            font-size: 1.8rem;
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            .nav-menu { gap: 15px; font-size: 0.85rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .games-grid { grid-template-columns: repeat(2, 1fr); }
+            .search-bar { width: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     NAVIGATION (Shared across all pages)
+═══════════════════════════════════════════════════════════════════════════ -->
+<header class="header">
+    <div class="nav-container">
+        <div class="logo" onclick="showPage('home')">🍎 MacBook Tech Desk</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('guides')">Guides</a></li>
+                <li><a onclick="showPage('support')">Support</a></li>
+                <li><a onclick="showPage('resources')">Resources</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-home" class="page-section active">
+    <section class="hero">
+        <h1>MacBook Support Hub</h1>
+        <p>Expert troubleshooting guides and resources for your Mac</p>
+        <a href="#services" class="cta-button">Explore Services</a>
+    </section>
+
+    <div class="container" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="showPage('guides')">
+                <div class="service-icon">📚</div>
+                <h3>Troubleshooting Guides</h3>
+                <p>Step-by-step solutions for common Mac issues and problems.</p>
+            </div>
+
+            <div class="service-card" onclick="showPage('support')">
+                <div class="service-icon">🛟</div>
+                <h3>Technical Support</h3>
+                <p>Get help with software, hardware, and connectivity issues.</p>
+            </div>
+
+            <div class="service-card" onclick="showPage('resources')">
+                <div class="service-icon">📖</div>
+                <h3>Resources</h3>
+                <p>Keyboard shortcuts, terminal commands, and helpful tips.</p>
+            </div>
+
+            <div class="service-card" onclick="showGuide('getting-started')">
+                <div class="service-icon">🚀</div>
+                <h3>Getting Started</h3>
+                <p>New to Mac? Learn the basics and essential first steps.</p>
+            </div>
+
+            <div class="service-card" onclick="showGuide('performance')">
+                <div class="service-icon">⚡</div>
+                <h3>Performance Boost</h3>
+                <p>Speed up and optimize your Mac's performance.</p>
+            </div>
+
+            <div class="service-card" onclick="showGuide('security')">
+                <div class="service-icon">🔒</div>
+                <h3>Security & Privacy</h3>
+                <p>Protect your Mac and keep your data safe.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 MacBook Tech Desk. All rights reserved.</p>
+        <p>Professional Mac support and troubleshooting resources.</p>
+    </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     GUIDES PAGE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-guides" class="page-section">
+    <div class="container">
+        <h2 class="section-title">📚 Troubleshooting Guides</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="showGuide('getting-started')">
+                <div class="service-icon">🚀</div>
+                <h3>Getting Started</h3>
+                <p>Essential first steps for new Mac users</p>
+            </div>
+            <div class="service-card" onclick="showGuide('keyboard-shortcuts')">
+                <div class="service-icon">⌨️</div>
+                <h3>Keyboard Shortcuts</h3>
+                <p>Master productivity shortcuts</p>
+            </div>
+            <div class="service-card" onclick="showGuide('terminal-commands')">
+                <div class="service-icon">💻</div>
+                <h3>Terminal Commands</h3>
+                <p>Essential command line operations</p>
+            </div>
+            <div class="service-card" onclick="showGuide('performance')">
+                <div class="service-icon">⚡</div>
+                <h3>Performance Guide</h3>
+                <p>Speed up and optimize your Mac</p>
+            </div>
+            <div class="service-card" onclick="showGuide('security')">
+                <div class="service-icon">🔒</div>
+                <h3>Security Guide</h3>
+                <p>Protect your Mac and data</p>
+            </div>
+            <div class="service-card" onclick="showGuide('backup')">
+                <div class="service-icon">💾</div>
+                <h3>Backup Guide</h3>
+                <p>Never lose your important data</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SUPPORT PAGE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-support" class="page-section">
+    <div class="container">
+        <h2 class="section-title">🛟 Technical Support</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="showGuide('software-support')">
+                <div class="service-icon">💿</div>
+                <h3>Software Support</h3>
+                <p>Fix app crashes and installation issues</p>
+            </div>
+            <div class="service-card" onclick="showGuide('hardware-repair')">
+                <div class="service-icon">🔧</div>
+                <h3>Hardware Repair</h3>
+                <p>Troubleshoot physical Mac problems</p>
+            </div>
+            <div class="service-card" onclick="showGuide('connectivity')">
+                <div class="service-icon">📡</div>
+                <h3>Connectivity Issues</h3>
+                <p>WiFi and network problems</p>
+            </div>
+            <div class="service-card" onclick="showGuide('clean-install')">
+                <div class="service-icon">🔄</div>
+                <h3>Clean Install macOS</h3>
+                <p>Fresh start with clean installation</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     RESOURCES PAGE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-resources" class="page-section">
+    <div class="container">
+        <h2 class="section-title">📖 Quick Resources</h2>
+        <div class="guide-content">
+            <h2>🔗 Useful Links</h2>
+            <ul>
+                <li><a href="https://support.apple.com" target="_blank" style="color: #667eea;">Apple Support</a> - Official support resources</li>
+                <li><a href="https://discussions.apple.com" target="_blank" style="color: #667eea;">Apple Discussions</a> - Community forum</li>
+                <li><a href="https://www.apple.com/support/systemstatus/" target="_blank" style="color: #667eea;">System Status</a> - Check Apple services</li>
+            </ul>
+
+            <h2>⌨️ Essential Shortcuts</h2>
+            <ul>
+                <li><code>⌘ + Space</code> - Spotlight Search</li>
+                <li><code>⌘ + Tab</code> - Switch Applications</li>
+                <li><code>⌘ + Q</code> - Quit Application</li>
+                <li><code>⌘ + W</code> - Close Window</li>
+                <li><code>⌘ + ,</code> - Preferences</li>
+            </ul>
+
+            <h2>💻 Quick Terminal Commands</h2>
+            <ul>
+                <li><code>top</code> - View running processes</li>
+                <li><code>diskutil list</code> - List all disks</li>
+                <li><code>caffeinate</code> - Prevent sleep</li>
+                <li><code>say "hello"</code> - Text to speech</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     GUIDE DETAIL PAGE
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-guide-detail" class="page-section">
+    <div class="container">
+        <button class="back-button" onclick="backToGuides()">← Back to Guides</button>
+        <div class="guide-content" id="guideContent"></div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SCICILLIANS GAMES PAGE (Hidden - Only accessible via secret button)
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="page-scicillians" class="page-section scicillians-page">
+    <nav class="scicillians-nav">
+        <div class="scicillians-logo" onclick="showAll()">🎯 Scicillians</div>
+        <div style="display:flex;align-items:center;gap:14px;">
+            <div class="search-bar">
+                <span style="color: #666;">🔍</span>
+                <input type="text" placeholder="Search games..." id="searchInput" oninput="handleSearch()">
+            </div>
+            <button class="back-button" onclick="showPage('home')">← Back</button>
+        </div>
+    </nav>
+
+    <div class="categories-bar">
+        <div class="cat-pill active" onclick="filterCat(this,'all')">🌟 All Games</div>
+        <div class="cat-pill" onclick="filterCat(this,'action')">⚔️ Action</div>
+        <div class="cat-pill" onclick="filterCat(this,'racing')">🏎️ Racing</div>
+        <div class="cat-pill" onclick="filterCat(this,'puzzle')">🧩 Puzzle</div>
+        <div class="cat-pill" onclick="filterCat(this,'sports')">⚽ Sports</div>
+        <div class="cat-pill" onclick="filterCat(this,'arcade')">👾 Arcade</div>
+        <div class="cat-pill" onclick="filterCat(this,'strategy')">🏰 Strategy</div>
+        <div class="cat-pill" onclick="filterCat(this,'multiplayer')">👥 Multiplayer</div>
+        <div class="cat-pill" onclick="filterCat(this,'shooting')">🔫 Shooting</div>
+        <div class="cat-pill" onclick="filterCat(this,'platformer')">🦘 Platformer</div>
+    </div>
+
+    <div class="games-container">
+        <h1 style="font-size: 2.5rem; margin-bottom: 20px; text-align: center;">🎯 Scicillians Game Hub</h1>
+        <p style="text-align: center; color: #aaa; margin-bottom: 30px;">65+ Working .IO Games - No downloads, no sign-ups</p>
+
+        <!-- FNAE Featured Banner -->
+        <div class="ugs-banner" onclick="openFNAE()" style="border-color:rgba(239,68,68,0.4);background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(120,0,0,0.15));">
+            <div class="ugs-banner-left">
+                <div class="ugs-banner-icon">😱</div>
+                <div>
+                    <div class="ugs-banner-title" style="color:#fca5a5;">Five Nights at Epstein's</div>
+                    <div class="ugs-banner-sub">Unity WebGL game (~140 MB) — opens in a new tab</div>
+                </div>
+            </div>
+            <div class="ugs-banner-arrow" style="color:#ef4444;">→</div>
+        </div>
+
+        <!-- Scicillian Files Banner -->
+        <div class="ugs-banner" onclick="openScicillianFiles()" style="border-color:rgba(93,169,255,0.4);background:linear-gradient(135deg,rgba(93,169,255,0.1),rgba(30,50,120,0.15));margin-top:12px;">
+            <div class="ugs-banner-left">
+                <div class="ugs-banner-icon">🎯</div>
+                <div>
+                    <div class="ugs-banner-title" style="color:#79c0ff;">Scicillian Game Files</div>
+                    <div class="ugs-banner-sub">Extra game files — opens in a new tab</div>
+                </div>
+            </div>
+            <div class="ugs-banner-arrow" style="color:#5da9ff;">→</div>
+        </div>
+
+        <div class="games-grid" id="gamesGrid"></div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     GAME MODAL
+═══════════════════════════════════════════════════════════════════════════ -->
+<div id="gameModal" class="game-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title" id="modalGameTitle">Game</div>
+            <button class="fullscreen-btn" onclick="toggleFullscreen()" id="fullscreenBtn">⛶ Fullscreen</button>
+            <button class="close-btn" onclick="closeGame()">✕ Close</button>
+        </div>
+        <div class="modal-body">
+            <iframe id="gameFrame" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- Secret Button (Small dot in bottom right) -->
+<button class="secret-trigger" id="secretBtn"></button>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════════════════════ -->
+<script>
+function openFNAE() {
+    try {
+        const b64 = "DQo8IS0tIFVsdGltYXRlIEdhbWUgU3Rhc2ggZmlsZS0tPiANCjwhLS0gRm9yIHRoZSByZWd1bGFybHkgdXBkYXRpbmcgZG9jIGdvIHRvIGh0dHBzOi8vZG9jcy5nb29nbGUuY29tL2RvY3VtZW50L2QvMV9GbUgzQmxTQlFJN0ZHZ0FRTDU5LVpQZThlQ3hzMzV3ZWw2SlV5VmFHOFEvIC0tPg0KDQoNCg0KDQo8IURPQ1RZUEUgaHRtbD4NCjxodG1sIGxhbmc9ImVuLXVzIj4NCiAgPGhlYWQ+DQogICAgPGJhc2UgaHJlZj0iaHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL3dlYi1wb3J0cy9mbmFlQGFmZDRlNTA3MWFkZDI5N2Q2MTY5NjY1YTRmOTk5ZDYyZjMxMjUzMmUvIj4NCiAgICA8bWV0YSBjaGFyc2V0PSJ1dGYtOCI+DQogICAgPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KICAgIDx0aXRsZT5Vbml0eSBXZWIgUGxheWVyIHwgRml2ZSBOaWdodCdzIGF0IEJJRyBFPC90aXRsZT4NCiAgICA8bGluayByZWw9InNob3J0Y3V0IGljb24iIGhyZWY9IlRlbXBsYXRlRGF0YS9mYXZpY29uLmljbyI+DQogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJUZW1wbGF0ZURhdGEvc3R5bGUuY3NzIj4NCiAgPC9oZWFkPg0KICA8Ym9keT4NCiAgPGRpdiBpZD0ibG9hZGluZy10ZXh0Ig0KICAgIHN0eWxlPSJjb2xvcjogd2hpdGU7IGZvbnQtc2l6ZTogNDhweDsgZm9udC1mYW1pbHk6IGN1cnNpdmU7IHRleHQtYWxpZ246IGNlbnRlcjsgbWFyZ2luLXRvcDogMjBweDsiPiBMT0FESU5HLi4uDQogIDwvZGl2Pg0KICAgIDxkaXYgaWQ9InVuaXR5LWNvbnRhaW5lciI+DQogICAgICA8Y2FudmFzIGlkPSJ1bml0eS1jYW52YXMiIHdpZHRoPTk2MCBoZWlnaHQ9NjAwIHRhYmluZGV4PSItMSI+PC9jYW52YXM+DQogICAgICA8ZGl2IGlkPSJ1bml0eS1sb2FkaW5nLWJhciI+DQogICAgICAgIDxkaXYgaWQ9InVuaXR5LWxvZ28iPjwvZGl2Pg0KICAgICAgICA8ZGl2IGlkPSJ1bml0eS1wcm9ncmVzcy1iYXItZW1wdHkiPg0KICAgICAgICAgIDxkaXYgaWQ9InVuaXR5LXByb2dyZXNzLWJhci1mdWxsIj48L2Rpdj4NCiAgICAgICAgPC9kaXY+DQogICAgICA8L2Rpdj4NCiAgICA8L2Rpdj4NCiAgICA8c2NyaXB0Pg0KdmFyIGxvYWRpbmdUZXh0ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiI2xvYWRpbmctdGV4dCIpOw0KICAgIGxldCB0b3RhbEJ5dGVzID0gMDsNCiAgICBsZXQgbG9hZGVkQnl0ZXMgPSAwOw0KDQogICAgYXN5bmMgZnVuY3Rpb24gZmV0Y2hXaXRoUHJvZ3Jlc3ModXJsKSB7DQogICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKHVybCk7DQogICAgICBjb25zdCByZWFkZXIgPSByZXNwb25zZS5ib2R5LmdldFJlYWRlcigpOw0KICAgICAgbGV0IGNodW5rcyA9IFtdOw0KICAgICAgbGV0IHJlY2VpdmVkID0gMDsNCiAgICAgIHdoaWxlICh0cnVlKSB7DQogICAgICAgIGNvbnN0IHsNCiAgICAgICAgICBkb25lLA0KICAgICAgICAgIHZhbHVlDQogICAgICAgIH0gPSBhd2FpdCByZWFkZXIucmVhZCgpOw0KICAgICAgICBpZiAoZG9uZSkgYnJlYWs7DQogICAgICAgIHJlY2VpdmVkICs9IHZhbHVlLmxlbmd0aDsNCiAgICAgICAgbG9hZGVkQnl0ZXMgKz0gdmFsdWUubGVuZ3RoOw0KICAgICAgICBjaHVua3MucHVzaCh2YWx1ZSk7DQogICAgICAgIGxldCBtYkRvbmUgPSAobG9hZGVkQnl0ZXMgLyAoMTAyNCAqIDEwMjQpKS50b0ZpeGVkKDIpOw0KICAgICAgICBsZXQgbWJUb3RhbCA9ICcxMzkuNTMnOw0KICAgICAgICBsb2FkaW5nVGV4dC50ZXh0Q29udGVudCA9IGBMT0FESU5HLi4uICR7bWJEb25lfSBNQiAvICR7bWJUb3RhbH0gTUJgOw0KICAgICAgfQ0KICAgICAgbGV0IGZ1bGxCdWZmZXIgPSBuZXcgVWludDhBcnJheShyZWNlaXZlZCk7DQogICAgICBsZXQgb2Zmc2V0ID0gMDsNCiAgICAgIGZvciAobGV0IGNodW5rIG9mIGNodW5rcykgew0KICAgICAgICBmdWxsQnVmZmVyLnNldChjaHVuaywgb2Zmc2V0KTsNCiAgICAgICAgb2Zmc2V0ICs9IGNodW5rLmxlbmd0aDsNCiAgICAgIH0NCiAgICAgIHJldHVybiBmdWxsQnVmZmVyLmJ1ZmZlcjsNCiAgICB9DQoNCiAgICBhc3luYyBmdW5jdGlvbiBtZXJnZUZpbGVzKGZpbGVQYXJ0cywgY2FjaGVLZXkpIHsNCiAgICAgIGNvbnN0IGJ1ZmZlcnMgPSBhd2FpdCBQcm9taXNlLmFsbCgNCiAgICAgICAgZmlsZVBhcnRzLm1hcChwYXJ0ID0+IGZldGNoV2l0aFByb2dyZXNzKHBhcnQpKQ0KICAgICAgKTsNCiAgICAgIGNvbnN0IG1lcmdlZEJsb2IgPSBuZXcgQmxvYihidWZmZXJzKTsNCiAgICAgIHJldHVybiBVUkwuY3JlYXRlT2JqZWN0VVJMKG1lcmdlZEJsb2IpOw0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIGdldFBhcnRzKGZpbGUsIHN0YXJ0LCBlbmQpIHsNCiAgICAgIGxldCBwYXJ0cyA9IFtdOw0KICAgICAgZm9yIChsZXQgaSA9IHN0YXJ0OyBpIDw9IGVuZDsgaSsrKSB7DQogICAgICAgIHBhcnRzLnB1c2goZmlsZSArICIucGFydCIgKyBpKTsNCiAgICAgIH0NCiAgICAgIHJldHVybiBwYXJ0czsNCiAgICB9DQogICAgKGFzeW5jICgpID0+IHsNCiAgICAgIGNvbnN0IFtkYXRhVXJsLCB3YXNtVXJsLCB3ZWJtXSA9IGF3YWl0IFByb21pc2UuYWxsKFsNCiAgICAgICAgbWVyZ2VGaWxlcyhnZXRQYXJ0cygiQnVpbGQvZm5hZS5kYXRhIiwgMSwgMyksICJmbmFlLmRhdGEiKSwNCiAgICAgICAgbWVyZ2VGaWxlcyhnZXRQYXJ0cygiQnVpbGQvZm5hZS53YXNtIiwgMSwgMiksICJmbmFlLndhc20iKSwNCiAgICAgICAgbWVyZ2VGaWxlcyhnZXRQYXJ0cygiU3RyZWFtaW5nQXNzZXRzLzIwMjUxMjE5MTkzNS53ZWJtIiwgMSwgMyksICIyMDI1MTIxOTE5MzUud2VibSIpLA0KICAgICAgXSk7DQoNCndpbmRvdy5yYW5kb213ZWJtID0gd2VibTsNCmNvbnN0IHJlYWxTcmMgPSBPYmplY3QuZ2V0T3duUHJvcGVydHlEZXNjcmlwdG9yKA0KICBIVE1MTWVkaWFFbGVtZW50LnByb3RvdHlwZSwNCiAgInNyYyINCik7DQoNCk9iamVjdC5kZWZpbmVQcm9wZXJ0eShIVE1MTWVkaWFFbGVtZW50LnByb3RvdHlwZSwgInNyYyIsIHsNCiAgc2V0KHZhbHVlKSB7DQogICAgaWYgKHR5cGVvZiB2YWx1ZSA9PT0gInN0cmluZyIgJiYgdmFsdWUuaW5jbHVkZXMoIjIwMjUxMjE5MTkzNS5tcDQiKSkgew0KICAgICAgdmFsdWUgPSB3aW5kb3cucmFuZG9td2VibTsNCiAgICB9DQogICAgcmV0dXJuIHJlYWxTcmMuc2V0LmNhbGwodGhpcywgdmFsdWUpOw0KICB9LA0KICBnZXQoKSB7DQogICAgcmV0dXJuIHJlYWxTcmMuZ2V0LmNhbGwodGhpcyk7DQogIH0NCn0pOw0KDQoNCiAgICAgIHZhciBjb250YWluZXIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCIjdW5pdHktY29udGFpbmVyIik7DQogICAgICB2YXIgY2FudmFzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiI3VuaXR5LWNhbnZhcyIpOw0KICAgICAgdmFyIGxvYWRpbmdCYXIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCIjdW5pdHktbG9hZGluZy1iYXIiKTsNCiAgICAgIHZhciBwcm9ncmVzc0JhckZ1bGwgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCIjdW5pdHktcHJvZ3Jlc3MtYmFyLWZ1bGwiKTsNCiAgICAgIHZhciB3YXJuaW5nQmFubmVyID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiI3VuaXR5LXdhcm5pbmciKTsNCg0KICAgICAgZnVuY3Rpb24gdW5pdHlTaG93QmFubmVyKG1zZywgdHlwZSkgew0KDQogICAgICB9DQoNCiAgICAgIHZhciBidWlsZFVybCA9ICJCdWlsZCI7DQogICAgICB2YXIgbG9hZGVyVXJsID0gYnVpbGRVcmwgKyAiL2ZuYWUubG9hZGVyLmpzIjsNCiAgICAgIHZhciBjb25maWcgPSB7DQogICAgICAgIGFyZ3VtZW50czogW10sDQogICAgICAgIGRhdGFVcmw6IGRhdGFVcmwsDQogICAgICAgIGZyYW1ld29ya1VybDogYnVpbGRVcmwgKyAiL2ZuYWUuZnJhbWV3b3JrLmpzIiwNCiAgICAgICAgY29kZVVybDogd2FzbVVybCwNCiAgICAgICAgc3RyZWFtaW5nQXNzZXRzVXJsOiAiU3RyZWFtaW5nQXNzZXRzIiwNCiAgICAgICAgY29tcGFueU5hbWU6ICJEZWZhdWx0Q29tcGFueSIsDQogICAgICAgIHByb2R1Y3ROYW1lOiAiZm5hZSIsDQogICAgICAgIHByb2R1Y3RWZXJzaW9uOiAiMS4wIiwNCiAgICAgICAgc2hvd0Jhbm5lcjogdW5pdHlTaG93QmFubmVyLA0KICAgICAgfTsNCg0KICAgICAgaWYgKC9pUGhvbmV8aVBhZHxpUG9kfEFuZHJvaWQvaS50ZXN0KG5hdmlnYXRvci51c2VyQWdlbnQpKSB7DQogICAgICAgIHZhciBtZXRhID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnbWV0YScpOw0KICAgICAgICBtZXRhLm5hbWUgPSAndmlld3BvcnQnOw0KICAgICAgICBtZXRhLmNvbnRlbnQgPSAnd2lkdGg9ZGV2aWNlLXdpZHRoLCBoZWlnaHQ9ZGV2aWNlLWhlaWdodCwgaW5pdGlhbC1zY2FsZT0xLjAsIHVzZXItc2NhbGFibGU9bm8sIHNocmluay10by1maXQ9eWVzJzsNCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2hlYWQnKVswXS5hcHBlbmRDaGlsZChtZXRhKTsNCiAgICAgIH0NCg0KDQogICAgICBsb2FkaW5nQmFyLnN0eWxlLmRpc3BsYXkgPSAiYmxvY2siOw0KDQogICAgICB2YXIgc2NyaXB0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7DQogICAgICBzY3JpcHQuc3JjID0gbG9hZGVyVXJsOw0KICAgICAgc2NyaXB0Lm9ubG9hZCA9ICgpID0+IHsNCiAgICAgICAgY3JlYXRlVW5pdHlJbnN0YW5jZShjYW52YXMsIGNvbmZpZywgKHByb2dyZXNzKSA9PiB7DQogICAgICAgICAgcHJvZ3Jlc3NCYXJGdWxsLnN0eWxlLndpZHRoID0gMTAwICogcHJvZ3Jlc3MgKyAiJSI7DQogICAgICAgIH0pLnRoZW4oKHVuaXR5SW5zdGFuY2UpID0+IHsNCiAgICAgICAgICBsb2FkaW5nQmFyLnN0eWxlLmRpc3BsYXkgPSAibm9uZSI7DQogICAgICAgICAgbG9hZGluZ1RleHQucmVtb3ZlKCk7DQogICAgICAgIH0pLmNhdGNoKChtZXNzYWdlKSA9PiB7DQogICAgICAgICAgYWxlcnQobWVzc2FnZSk7DQogICAgICAgIH0pOw0KICAgICAgfTsNCiAgICAgIGRvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoc2NyaXB0KTsNCiAgICB9KSgpOw0KICAgIDwvc2NyaXB0Pg0KICA8L2JvZHk+DQo8L2h0bWw+DQo=";
+        // Decode base64 to bytes, then UTF-8 decode properly
+        const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+        const html = new TextDecoder('utf-8').decode(bytes);
+        const w = window.open('about:blank', '_blank');
+        if (!w) { alert('Pop-up blocked! Please allow pop-ups and try again.'); return; }
+        w.document.open();
+        w.document.write(html);
+        w.document.close();
+    } catch(e) {
+        alert('Error opening game: ' + e.message);
+    }
+}
+
+function openScicillianFiles() {
+    try {
+        const b64 = "PCFET0NUWVBFIGh0bWw+DQo8aHRtbD4NCjxoZWFkPg0KICAgIDx0aXRsZT5OZXcgVGFiPC90aXRsZT4NCiAgICA8bGluayByZWw9Imljb24iIGhyZWY9Imh0dHBzOi8vaS5pYmIuY28vbnFYV3RRSEYvMjAyNi0wMy0wMi0wZzMtS2xla2kucG5nIiB0eXBlPSJpbWFnZS94LWljb24iPg0KICAgIDxzdHlsZT4NCkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUludGVyOndnaHRANDAwOzUwMDs2MDA7NzAwJmRpc3BsYXk9c3dhcCcpOw0KDQo6cm9vdCB7DQogICAgLS1iZy1ncmFkaWVudDogbGluZWFyLWdyYWRpZW50KA0KICAgICAgICAxMzVkZWcsDQogICAgICAgICMxYzFmMmIgMCUsICAgICAgLyogZGFyayBncmF5LWJsdWUgKi8NCiAgICAgICAgIzFmMjYzOCA1MCUsICAgICAvKiBjb29sIGNoYXJjb2FsICovDQogICAgICAgICMxYjIzMzMgMTAwJSAgICAgLyogc3VidGxlIGJsdWUgdGludCAqLw0KICAgICk7DQoNCiAgICAtLWdsYXNzOiByZ2JhKDkwLCAxNTAsIDI1NSwgMC4wNik7DQogICAgLS1nbGFzcy1zdHJvbmc6IHJnYmEoOTAsIDE1MCwgMjU1LCAwLjEyKTsNCg0KICAgIC0tYWNjZW50OiAjNWRhOWZmOw0KICAgIC0tYWNjZW50LWhvdmVyOiAjNzljMGZmOw0KDQogICAgLS10ZXh0LW1haW46ICNmZmZmZmY7DQogICAgLS10ZXh0LW11dGVkOiByZ2JhKDIwMCwyMjAsMjU1LDAuNik7DQp9DQoNCiogew0KICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7DQp9DQoNCmJvZHkgew0KICAgIGZvbnQtZmFtaWx5OiAnSW50ZXInLCBzYW5zLXNlcmlmOw0KICAgIGJhY2tncm91bmQ6IHZhcigtLWJnLWdyYWRpZW50KTsNCiAgICBtaW4taGVpZ2h0OiAxMDB2aDsNCiAgICBtYXJnaW46IDA7DQogICAgZGlzcGxheTogZmxleDsNCiAgICBjb2xvcjogdmFyKC0tdGV4dC1tYWluKTsNCg0KfQ0KDQovKiBTaWRlYmFyICovDQouc2lkZWJhciB7DQogICAgcG9zaXRpb246IGZpeGVkOw0KICAgIGxlZnQ6IDA7DQogICAgdG9wOiAwOw0KICAgIHdpZHRoOiA3NXB4Ow0KICAgIGhlaWdodDogMTAwdmg7DQogICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KA0KICAgICAgICAxODBkZWcsDQogICAgICAgIHJnYmEoNjAsMTEwLDIwMCwwLjEyKSwNCiAgICAgICAgcmdiYSgzMCw1MCw5MCwwLjI1KQ0KICAgICk7DQogICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgcmdiYSgxMjAsMTcwLDI1NSwwLjE1KTsNCiAgICBiYWNrZHJvcC1maWx0ZXI6IGJsdXIoMjBweCk7DQogICAgcGFkZGluZzogMjBweCAxMHB4Ow0KICAgIGRpc3BsYXk6IGZsZXg7DQogICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsNCiAgICBnYXA6IDEwcHg7DQogICAgb3ZlcmZsb3cteTogYXV0bzsNCn0NCg0KLnNpZGViYXItYnRuIHsNCiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1nbGFzcy1zdHJvbmcpOw0KICAgIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsMC4wOCk7DQogICAgcGFkZGluZzogMTBweDsNCiAgICBmb250LXNpemU6IDE0cHg7DQogICAgZm9udC13ZWlnaHQ6IDYwMDsNCiAgICBib3JkZXItcmFkaXVzOiAxMnB4Ow0KICAgIGN1cnNvcjogcG9pbnRlcjsNCiAgICBjb2xvcjogd2hpdGU7DQogICAgdHJhbnNpdGlvbjogYWxsIDAuMnMgZWFzZTsNCn0NCg0KLnNpZGViYXItYnRuOmhvdmVyIHsNCiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1hY2NlbnQpOw0KICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtMnB4KTsNCiAgICBib3gtc2hhZG93OiAwIDhweCAyMHB4IHJnYmEoMCwwLDAsMC4zKTsNCn0NCg0KLnNpZGViYXItYnRuLmVtcHR5IHsNCiAgICBvcGFjaXR5OiAwLjM7DQogICAgY3Vyc29yOiBkZWZhdWx0Ow0KfQ0KDQovKiBNYWluIENvbnRlbnQgKi8NCi5tYWluLWNvbnRlbnQgew0KICAgIGZsZXg6IDE7DQogICAgbWFyZ2luLWxlZnQ6IDk1cHg7DQogICAgaGVpZ2h0OiAxMDB2aDsNCiAgICBvdmVyZmxvdy15OiBhdXRvOw0KICAgIHBhZGRpbmc6IDQwcHggMjBweDsNCg0KICAgIC8qIEhpZGUgc2Nyb2xsYmFyIChDaHJvbWUsIEVkZ2UsIFNhZmFyaSkgKi8NCiAgICBzY3JvbGxiYXItd2lkdGg6IG5vbmU7ICAgICAgIC8qIEZpcmVmb3ggKi8NCiAgICAtbXMtb3ZlcmZsb3ctc3R5bGU6IG5vbmU7ICAgIC8qIElFIDEwKyAqLw0KfQ0KDQpoMSB7DQogICAgdGV4dC1hbGlnbjogY2VudGVyOw0KICAgIGZvbnQtc2l6ZTogNDBweDsNCiAgICBmb250LXdlaWdodDogNzAwOw0KICAgIG1hcmdpbi1ib3R0b206IDEwcHg7DQogICAgbGV0dGVyLXNwYWNpbmc6IC0xcHg7DQp9DQoNCmgyIHsNCiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7DQogICAgZm9udC13ZWlnaHQ6IDUwMDsNCiAgICBmb250LXNpemU6IDE2cHg7DQogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOw0KfQ0KDQovKiBMaW5rcyAqLw0KYSB7DQogICAgY29sb3I6IHZhcigtLWFjY2VudCk7DQogICAgdGV4dC1kZWNvcmF0aW9uOiBub25lOw0KICAgIGZvbnQtd2VpZ2h0OiA2MDA7DQp9DQoNCmE6aG92ZXIgew0KICAgIGNvbG9yOiB2YXIoLS1hY2NlbnQtaG92ZXIpOw0KfQ0KDQovKiBMZXR0ZXIgU2VjdGlvbnMgKi8NCi5sZXR0ZXItc2VjdGlvbiB7DQogICAgbWFyZ2luOiA1MHB4IGF1dG87DQogICAgbWF4LXdpZHRoOiA5MDBweDsNCiAgICBwYWRkaW5nOiAzMHB4Ow0KICAgIGJhY2tncm91bmQ6IHZhcigtLWdsYXNzKTsNCiAgICBib3JkZXItcmFkaXVzOiAyMHB4Ow0KICAgIGJhY2tkcm9wLWZpbHRlcjogYmx1cigxNXB4KTsNCiAgICBib3JkZXI6IDFweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LDAuMDUpOw0KICAgIHRyYW5zaXRpb246IDAuM3MgZWFzZTsNCn0NCg0KLmxldHRlci1zZWN0aW9uOmhvdmVyIHsNCiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTNweCk7DQp9DQoNCi5sZXR0ZXItaGVhZGVyIHsNCiAgICBmb250LXNpemU6IDI4cHg7DQogICAgZm9udC13ZWlnaHQ6IDcwMDsNCiAgICBtYXJnaW4tYm90dG9tOiAyMHB4Ow0KICAgIGNvbG9yOiB3aGl0ZTsNCn0NCg0KLyogQnV0dG9ucyAqLw0KLmJ1dHRvbnMtY29udGFpbmVyIHsNCiAgICBkaXNwbGF5OiBncmlkOw0KICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KGF1dG8tZml0LCBtaW5tYXgoMjUwcHgsIDFmcikpOw0KICAgIGdhcDogMTZweDsNCiAgICB3aWR0aDogMTAwJTsNCn0NCg0KaW5wdXRbdHlwZT0iYnV0dG9uIl0gew0KICAgIGJhY2tncm91bmQ6IHZhcigtLWdsYXNzLXN0cm9uZyk7DQogICAgYm9yZGVyOiAxcHggc29saWQgcmdiYSgyNTUsIDI1NSwgMjU1LCAwLjI1KTsNCiAgICBwYWRkaW5nOiAxOHB4IDIycHg7DQogICAgZm9udC1zaXplOiAxNXB4Ow0KICAgIGZvbnQtd2VpZ2h0OiA1MDA7DQogICAgYm9yZGVyLXJhZGl1czogMTRweDsNCiAgICBjdXJzb3I6IHBvaW50ZXI7DQogICAgY29sb3I6IHdoaXRlOw0KICAgIHRleHQtYWxpZ246IGxlZnQ7DQogICAgdHJhbnNpdGlvbjogYWxsIDAuMjVzIGVhc2U7DQp9DQoNCmlucHV0W3R5cGU9ImJ1dHRvbiJdOmhvdmVyIHsNCiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoDQogICAgICAgIDEzNWRlZywNCiAgICAgICAgIzVkYTlmZiwNCiAgICAgICAgIzRmOGRmZg0KICAgICk7DQogICAgYm94LXNoYWRvdzogMCA4cHggMjVweCByZ2JhKDcwLDEzMCwyNTUsMC40KTsNCn0NCg0KaW5wdXRbdHlwZT0iYnV0dG9uIl06YWN0aXZlIHsNCiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7DQp9DQoNCi8qIEVtcHR5IFN0YXRlICovDQouZW1wdHktbWVzc2FnZSB7DQogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOw0KICAgIGZvbnQtc3R5bGU6IGl0YWxpYzsNCiAgICBwYWRkaW5nOiAyMHB4IDA7DQp9DQoNCi8qIFNjcm9sbGJhciAqLw0KOjotd2Via2l0LXNjcm9sbGJhciB7DQogICAgd2lkdGg6IDhweDsNCn0NCg0KOjotd2Via2l0LXNjcm9sbGJhci10aHVtYiB7DQogICAgYmFja2dyb3VuZDogcmdiYSgyNTUsMjU1LDI1NSwwLjE1KTsNCiAgICBib3JkZXItcmFkaXVzOiA0cHg7DQp9DQoNCi8qIE1vYmlsZSAqLw0KQG1lZGlhIChtYXgtd2lkdGg6IDc2OHB4KSB7DQogICAgLnNpZGViYXIgew0KICAgICAgICB3aWR0aDogNjBweDsNCiAgICB9DQoNCiAgICAubWFpbi1jb250ZW50IHsNCiAgICAgICAgbWFyZ2luLWxlZnQ6IDc1cHg7DQogICAgICAgIHBhZGRpbmc6IDMwcHggMTVweDsNCiAgICB9DQoNCiAgICBoMSB7DQogICAgICAgIGZvbnQtc2l6ZTogMzBweDsNCiAgICB9DQoNCiAgICAubGV0dGVyLXNlY3Rpb24gew0KICAgICAgICBwYWRkaW5nOiAyMHB4Ow0KICAgIH0NCn0NCiNzZWN0aW9ucy1jb250YWluZXIgPiBkaXYgew0KICAgIGJvcmRlcjogMXB4IHNvbGlkIHJnYmEoMjU1LCAyNTUsIDI1NSwgMC4yNSk7IC8qIHdoaXRlIG91dGxpbmUgKi8NCiAgICBib3JkZXItcmFkaXVzOiAyMHB4OyAvKiBrZWVwIHJvdW5kZWQgY29ybmVycyAqLw0KICAgIHBhZGRpbmc6IDMwcHg7IC8qIG9wdGlvbmFsLCBtYXRjaGVzIG9yaWdpbmFsIHN0eWxlICovDQogICAgdHJhbnNpdGlvbjogMC4zcyBlYXNlOw0KfQ0KDQojc2VjdGlvbnMtY29udGFpbmVyID4gZGl2OmhvdmVyIHsNCiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTNweCk7DQp9DQo8L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHk+DQogICAgPCEtLSBTaWRlYmFyIE5hdmlnYXRpb24gLS0+DQogICAgPGRpdiBjbGFzcz0ic2lkZWJhciIgaWQ9InNpZGViYXIiPg0KICAgIDwvZGl2Pg0KDQogICAgPCEtLSBNYWluIENvbnRlbnQgLS0+DQogICAgPGRpdiBjbGFzcz0ibWFpbi1jb250ZW50Ij4NCiAgICAgICAgPGgxPvCfjq8gU2NpY2lsbGlhbiBHYW1lIEZpbGVzPC9oMT4NCiAgICA8aDIgc3R5bGU9InRleHQtYWxpZ246IGNlbnRlcjsgbWFyZ2luLWJvdHRvbTogMzBweDsgZm9udC13ZWlnaHQ6IDUwMDsgZm9udC1zaXplOiAxOHB4OyI+DQogICAgPGEgaHJlZj0iaHR0cHM6Ly9uZXd3ZWItY2xvdWQuZ2l0aHViLmlvL3RoZXBpbm5hY2xlLyIgDQogICAgICAgc3R5bGU9ImNvbG9yOiAjNWRhOWZmOyB0ZXh0LWRlY29yYXRpb246IG5vbmU7Ij4NCiAgICAgICDihpAgQmFjayB0byBTY2ljaWxsaWFucyBHYW1lIEh1Yg0KICAgIDwvYT4NCjwvaDI+DQogICAgPGgyIHN0eWxlPSJjb2xvcjogd2hpdGU7IHRleHQtYWxpZ246IGNlbnRlcjsgbWFyZ2luLWJvdHRvbTogMzBweDsgdGV4dC1zaGFkb3c6IDJweCAycHggNHB4IHJnYmEoMCwwLDAsMC4zKTsgZm9udC13ZWlnaHQ6IG5vcm1hbDsgZm9udC1zaXplOiAxOHB4OyI+DQogDQogICAgPC9hPg0KICAgIDxidXR0b24gaWQ9ImxvbGJ1dHRvbiIgb25jbGljaz0iY29uc3Qgc2NyaXB0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnc2NyaXB0Jyk7c2NyaXB0LnNyYyA9ICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvYnViYmxzL3Vncy1zaW5nbGVmaWxlQG1haW4vZ2FtZXMuanMnO2RvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoc2NyaXB0KTsiPkNsaWNrIHRvIGxvYWQgaWYgaXQgaXNudCBsb2FkaW5nPC9idXR0b24+DQogICAgPC9oMj4NCg0KICAgICAgICANCiAgICAgICAgPGRpdiBpZD0ic2VjdGlvbnMtY29udGFpbmVyIj4gDQogICAgICAgIDwvZGl2Pg0KICAgIDwvZGl2Pg0KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvYnViYmxzL3Vncy1zaW5nbGVmaWxlQG1haW4vZ2FtZXMuanMiPjwvc2NyaXB0Pg0KICAgPC9ib2R5Pg0KICAgPC9odG1sPg==";
+        const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+        const html = new TextDecoder('utf-8').decode(bytes);
+        const w = window.open('about:blank', '_blank');
+        if (!w) { alert('Pop-up blocked! Please allow pop-ups and try again.'); return; }
+        w.document.open();
+        w.document.write(html);
+        w.document.close();
+    } catch(e) { alert('Error: ' + e.message); }
+}
+
+// ─── GAMES DATABASE ──────────────────────────────────────────────────────────
+const games = [
+    { id: 'tank-stars', name: 'Tank Stars', emoji: '🎯', color: '#1e3a8a', tags: ['action','shooting'], url: 'https://kiz10.com/gamecode/tank-stars/' },
+    { id: 'krunker', name: 'Krunker.io', emoji: '🎯', color: '#dc2626', tags: ['shooting','multiplayer'], url: 'https://krunker.io/' },
+    { id: 'shell-shockers', name: 'Shell Shockers', emoji: '🥚', color: '#ca8a04', tags: ['shooting','multiplayer'], url: 'https://shellshock.io/' },
+    { id: 'venge-io', name: 'Venge.io', emoji: '⚔️', color: '#1e3a8a', tags: ['shooting','multiplayer'], url: 'https://venge.io/' },
+    { id: 'zombs-royale', name: 'Zombs Royale', emoji: '👑', color: '#7c2d12', tags: ['shooting','multiplayer'], url: 'https://zombsroyale.io/' },
+    { id: 'narrow-one', name: 'Narrow One', emoji: '🏹', color: '#1e3a8a', tags: ['shooting','multiplayer'], url: 'https://narrow.one/' },
+    { id: 'agar-io', name: 'Agar.io', emoji: '🔵', color: '#1d4ed8', tags: ['arcade','multiplayer'], url: 'https://agar.io/' },
+    { id: 'slither-io', name: 'Slither.io', emoji: '🐍', color: '#15803d', tags: ['arcade','multiplayer'], url: 'https://slither.io/' },
+    { id: 'diep-io', name: 'Diep.io', emoji: '💣', color: '#1e3a8a', tags: ['arcade','multiplayer'], url: 'https://diep.io/' },
+    { id: 'paper-io', name: 'Paper.io 2', emoji: '📄', color: '#0369a1', tags: ['arcade','multiplayer'], url: 'https://paper-io.com/' },
+    { id: 'hole-io', name: 'Hole.io', emoji: '🕳️', color: '#1e293b', tags: ['arcade','multiplayer'], url: 'https://hole-io.com/' },
+    { id: 'smash-karts', name: 'Smash Karts', emoji: '🏎️', color: '#0f766e', tags: ['racing','multiplayer'], url: 'https://smashkarts.io/' },
+    { id: 'lordz-io', name: 'Lordz.io', emoji: '👑', color: '#92400e', tags: ['strategy','multiplayer'], url: 'https://lordz.io/' },
+    { id: 'moomoo-io', name: 'Moomoo.io', emoji: '🐄', color: '#ca8a04', tags: ['strategy','multiplayer'], url: 'https://moomoo.io/' },
+    { id: 'taming-io', name: 'Taming.io', emoji: '🐾', color: '#15803d', tags: ['multiplayer','action'], url: 'https://taming.io/' },
+    { id: 'splix-io', name: 'Splix.io', emoji: '📐', color: '#0369a1', tags: ['arcade','multiplayer'], url: 'https://splix.io/' },
+    { id: 'wings-io', name: 'Wings.io', emoji: '✈️', color: '#0369a1', tags: ['multiplayer','action'], url: 'https://wings.io/' },
+    { id: 'wormate-io', name: 'Wormate.io', emoji: '🐛', color: '#65a30d', tags: ['arcade','multiplayer'], url: 'https://wormate.io/' },
+    { id: 'defly-io', name: 'Defly.io', emoji: '🚁', color: '#0369a1', tags: ['multiplayer','action'], url: 'https://defly.io/' },
+    { id: 'starblast-io', name: 'Starblast.io', emoji: '🌟', color: '#1e3a8a', tags: ['shooting','multiplayer'], url: 'https://starblast.io/' },
+    { id: 'bonk-io', name: 'Bonk.io', emoji: '⚽', color: '#7c3aed', tags: ['multiplayer','action'], url: 'https://bonk.io/' },
+    { id: 'yohoho-io', name: 'YoHoHo.io', emoji: '🏴‍☠️', color: '#1e3a8a', tags: ['multiplayer','action'], url: 'https://yohoho.io/' },
+    { id: 'brutal-io', name: 'Brutal.io', emoji: '⚡', color: '#dc2626', tags: ['arcade','multiplayer'], url: 'https://brutal.io/' },
+    { id: 'worms-zone', name: 'Worms Zone', emoji: '🐛', color: '#65a30d', tags: ['arcade','multiplayer'], url: 'https://wormszone.io/' },
+    { id: 'skribbl', name: 'Skribbl.io', emoji: '🎨', color: '#2563eb', tags: ['arcade','multiplayer'], url: 'https://skribbl.io/' },
+    { id: 'minecraft', name: 'Minecraft Classic', emoji: '⛏️', color: '#4d7c0f', tags: ['strategy','multiplayer'], url: 'https://classic.minecraft.net/' },
+    { id: 'cookie-clicker', name: 'Cookie Clicker', emoji: '🍪', color: '#b45309', tags: ['arcade'], url: 'https://orteil.dashnet.org/cookieclicker/' },
+    { id: 'wordle', name: 'Wordle', emoji: '📝', color: '#15803d', tags: ['puzzle'], url: 'https://www.nytimes.com/games/wordle/index.html' },
+    { id: 'gartic-phone', name: 'Gartic Phone', emoji: '📱', color: '#7c3aed', tags: ['arcade','multiplayer'], url: 'https://garticphone.com/' },
+    { id: 'fnf', name: "Friday Night Funkin'", emoji: '🎵', color: '#be185d', tags: ['arcade','multiplayer'], url: 'https://funkin.me/' },
+    { id: '1v1-lol', name: '1v1.LOL', emoji: '🔫', color: '#dc2626', tags: ['shooting','multiplayer'], url: 'https://1v1.lol/' },
+    { id: 'buildroyale', name: 'BuildRoyale.io', emoji: '🏗️', color: '#0369a1', tags: ['shooting','multiplayer'], url: 'https://buildroyale.io/' },
+    { id: 'surviv-io', name: 'Surviv.io', emoji: '🪖', color: '#854d0e', tags: ['shooting','multiplayer'], url: 'https://surviv.io/' },
+    { id: 'kirka-io', name: 'Kirka.io', emoji: '🔫', color: '#1e3a8a', tags: ['shooting','multiplayer'], url: 'https://kirka.io/' },
+    { id: 'ev-io', name: 'ev.io', emoji: '🎮', color: '#7c3aed', tags: ['shooting','multiplayer'], url: 'https://ev.io/' },
+    { id: 'spinz-io', name: 'Spinz.io', emoji: '🌀', color: '#7c3aed', tags: ['arcade','multiplayer'], url: 'https://spinz.io/' },
+    { id: 'powerline-io', name: 'Powerline.io', emoji: '⚡', color: '#1d4ed8', tags: ['arcade','multiplayer'], url: 'https://powerline.io/' },
+    { id: 'stabfish-io', name: 'Stabfish.io', emoji: '🐟', color: '#0369a1', tags: ['multiplayer','action'], url: 'https://stabfish.io/' },
+    { id: 'littlebigsnake', name: 'Little Big Snake', emoji: '🐍', color: '#15803d', tags: ['arcade','multiplayer'], url: 'https://littlebigsnake.com/' },
+    { id: 'snake-io', name: 'Snake.io', emoji: '🐍', color: '#166534', tags: ['arcade','multiplayer'], url: 'https://snake.io/' },
+    { id: 'snowball-io', name: 'Snowball.io', emoji: '⛄', color: '#0ea5e9', tags: ['arcade','multiplayer'], url: 'https://snowball.io/' },
+    { id: 'betrayal-io', name: 'Betrayal.io', emoji: '🔪', color: '#dc2626', tags: ['multiplayer','action'], url: 'https://betrayal.io/' },
+    { id: 'stabfish2', name: 'Stabfish 2', emoji: '🐟', color: '#0284c7', tags: ['multiplayer','action'], url: 'https://stabfish2.io/' },
+    { id: 'warbrokers', name: 'War Brokers', emoji: '🪖', color: '#4d7c0f', tags: ['shooting','multiplayer'], url: 'https://warbrokers.io/' },
+    { id: 'arras-io', name: 'Arras.io', emoji: '💥', color: '#1e3a8a', tags: ['arcade','multiplayer'], url: 'https://arras.io/' },
+    { id: 'flyordie', name: 'Fly Or Die', emoji: '🐦', color: '#0369a1', tags: ['arcade','multiplayer'], url: 'https://flyordie.io/' },
+    { id: 'hexar-io', name: 'Hexar.io', emoji: '⬢', color: '#7c3aed', tags: ['arcade','multiplayer'], url: 'https://hexar.io/' },
+    { id: 'narwhale-io', name: 'Narwhale.io', emoji: '🐋', color: '#0369a1', tags: ['arcade','multiplayer'], url: 'https://narwhale.io/' },
+    { id: 'braains-io', name: 'Braains.io', emoji: '🧟', color: '#365314', tags: ['arcade','multiplayer'], url: 'https://braains.io/' },
+    { id: 'zombs-io', name: 'Zombs.io', emoji: '🧟', color: '#4d7c0f', tags: ['strategy','multiplayer'], url: 'https://zombs.io/' },
+    { id: 'gulper-io', name: 'Gulper.io', emoji: '🐠', color: '#0284c7', tags: ['arcade','multiplayer'], url: 'https://gulper.io/' },
+    { id: 'krew-io', name: 'Krew.io', emoji: '🏴‍☠️', color: '#1e3a8a', tags: ['multiplayer','action'], url: 'https://krew.io/' },
+    { id: 'battleboats-io', name: 'Battleboats.io', emoji: '⛵', color: '#0369a1', tags: ['multiplayer','action'], url: 'https://battleboats.io/' },
+    { id: 'starve-io', name: 'Starve.io', emoji: '🏕️', color: '#78350f', tags: ['strategy','multiplayer'], url: 'https://starve.io/' },
+    { id: 'shooters-io', name: 'Shooters.io', emoji: '🔫', color: '#dc2626', tags: ['shooting','multiplayer'], url: 'https://shooters.io/' },
+    { id: 'retro-bowl', name: 'Retro Bowl', emoji: '🏈', color: '#92400e', tags: ['sports'], url: 'https://retrobowl.gg/' },
+];
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+// ─── PAGE NAVIGATION ─────────────────────────────────────────────────────────
+function showPage(pageName) {
+    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + pageName).classList.add('active');
+    
+    if (pageName === 'scicillians') {
+        renderGames();
+    }
+}
+
+// ─── SECRET BUTTON (Opens Scicillians) ──────────────────────────────────────
+document.getElementById('secretBtn').addEventListener('click', () => {
+    showPage('scicillians');
+});
+
+// ─── RENDER GAMES ────────────────────────────────────────────────────────────
+function renderGames() {
+    const grid = document.getElementById('gamesGrid');
+    
+    let filtered = games;
+    
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(g => g.tags.includes(currentFilter));
+    }
+    
+    if (currentSearch) {
+        filtered = filtered.filter(g => 
+            g.name.toLowerCase().includes(currentSearch.toLowerCase())
+        );
+    }
+    
+    grid.innerHTML = filtered.map(g => `
+        <div class="game-card" onclick="openGame('${g.id}')">
+            <div class="game-icon">${g.emoji}</div>
+            <div class="game-name">${g.name}</div>
+            <div class="game-tags">
+                ${g.tags.map(t => `<span class="game-tag">${t}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+function filterCat(el, cat) {
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    currentFilter = cat;
+    renderGames();
+}
+
+function showAll() {
+    currentFilter = 'all';
+    currentSearch = '';
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.cat-pill')[0].classList.add('active');
+    renderGames();
+}
+
+function handleSearch() {
+    currentSearch = document.getElementById('searchInput').value;
+    renderGames();
+}
+
+// ─── GAME MODAL ──────────────────────────────────────────────────────────────
+function openGame(id) {
+    const game = games.find(g => g.id === id);
+    if (!game) return;
+    
+    document.getElementById('modalGameTitle').textContent = game.name;
+    document.getElementById('gameFrame').src = game.url;
+    document.getElementById('gameModal').classList.add('active');
+}
+
+function closeGame() {
+    document.getElementById('gameModal').classList.remove('active');
+    document.getElementById('gameFrame').src = '';
+}
+
+function toggleFullscreen() {
+    const frame = document.getElementById('gameFrame');
+    const btn = document.getElementById('fullscreenBtn');
+    if (!document.fullscreenElement) {
+        frame.requestFullscreen().then(() => {
+            btn.textContent = '⛶ Exit Fullscreen';
+        }).catch(err => {
+            alert('Fullscreen not available for this game.');
+        });
+    } else {
+        document.exitFullscreen().then(() => {
+            btn.textContent = '⛶ Fullscreen';
+        });
+    }
+}
+
+document.addEventListener('fullscreenchange', () => {
+    const btn = document.getElementById('fullscreenBtn');
+    if (!document.fullscreenElement) {
+        btn.textContent = '⛶ Fullscreen';
+    }
+});
+
+document.getElementById('gameModal').addEventListener('click', function(e) {
+    if (e.target === this) closeGame();
+});
+
+// ─── GUIDES ──────────────────────────────────────────────────────────────────
+const guides = {
+    'getting-started': `
+        <h1>🚀 Getting Started with Mac</h1>
+        <p>Welcome to your new Mac! This guide will help you get started.</p>
+        
+        <h2>First Steps</h2>
+        <ol>
+            <li>Set up your Apple ID</li>
+            <li>Connect to Wi-Fi</li>
+            <li>Update macOS to the latest version</li>
+            <li>Install essential apps</li>
+            <li>Learn basic keyboard shortcuts</li>
+        </ol>
+        
+        <h2>Essential Apps</h2>
+        <ul>
+            <li>Safari - Web browser</li>
+            <li>Mail - Email client</li>
+            <li>Messages - Chat app</li>
+            <li>Calendar - Schedule management</li>
+            <li>Notes - Quick note-taking</li>
+        </ul>
+    `,
+    'keyboard-shortcuts': `
+        <h1>⌨️ Keyboard Shortcuts</h1>
+        <p>Master these shortcuts to boost your productivity.</p>
+        
+        <h2>Essential Shortcuts</h2>
+        <ul>
+            <li><code>⌘ + Space</code> - Spotlight Search</li>
+            <li><code>⌘ + Tab</code> - Switch between apps</li>
+            <li><code>⌘ + Q</code> - Quit application</li>
+            <li><code>⌘ + W</code> - Close window</li>
+            <li><code>⌘ + C/V/X</code> - Copy/Paste/Cut</li>
+        </ul>
+    `,
+    'terminal-commands': `
+        <h1>💻 Terminal Commands</h1>
+        <p>Powerful commands for advanced Mac users.</p>
+        
+        <h2>Basic Commands</h2>
+        <ul>
+            <li><code>ls</code> - List files</li>
+            <li><code>cd</code> - Change directory</li>
+            <li><code>pwd</code> - Print working directory</li>
+            <li><code>mkdir</code> - Create directory</li>
+        </ul>
+    `,
+    'performance': `
+        <h1>⚡ Performance Optimization</h1>
+        <p>Speed up your Mac with these tips.</p>
+        
+        <h2>Quick Fixes</h2>
+        <ol>
+            <li>Restart your Mac regularly</li>
+            <li>Close unused applications</li>
+            <li>Clear browser cache</li>
+            <li>Remove startup items</li>
+        </ol>
+    `,
+    'security': `
+        <h1>🔒 Security Best Practices</h1>
+        <p>Protect your Mac and personal data.</p>
+        
+        <h2>Essential Security Steps</h2>
+        <ol>
+            <li>Enable FileVault disk encryption</li>
+            <li>Use strong passwords</li>
+            <li>Enable Firewall</li>
+            <li>Keep macOS updated</li>
+        </ol>
+    `,
+    'backup': `
+        <h1>💾 Backup Your Mac</h1>
+        <p>Never lose your important data.</p>
+        
+        <h2>Time Machine Setup</h2>
+        <ol>
+            <li>Connect external drive</li>
+            <li>Open System Preferences > Time Machine</li>
+            <li>Select backup disk</li>
+            <li>Enable automatic backups</li>
+        </ol>
+    `,
+    'software-support': `
+        <h1>💿 Software Support</h1>
+        <p>Fix common software issues on your Mac.</p>
+        
+        <h2>App Won't Open</h2>
+        <ol>
+            <li>Force quit (⌘ + Option + Esc)</li>
+            <li>Restart your Mac</li>
+            <li>Update the app</li>
+            <li>Reinstall if necessary</li>
+        </ol>
+    `,
+    'hardware-repair': `
+        <h1>🔧 Hardware Troubleshooting</h1>
+        <p>Diagnose and fix hardware problems.</p>
+        
+        <h2>Running Diagnostics</h2>
+        <ol>
+            <li>Shut down your Mac</li>
+            <li>Turn on and press D</li>
+            <li>Wait for diagnostics to load</li>
+            <li>Follow instructions</li>
+        </ol>
+    `,
+    'connectivity': `
+        <h1>📡 Connectivity Issues</h1>
+        <p>Fix WiFi and network problems.</p>
+        
+        <h2>WiFi Not Working</h2>
+        <ol>
+            <li>Turn WiFi off and on</li>
+            <li>Restart your router</li>
+            <li>Remove and re-add network</li>
+            <li>Reset network settings</li>
+        </ol>
+    `,
+    'clean-install': `
+        <h1>🔄 Clean Install macOS</h1>
+        <p>Start fresh with a clean installation.</p>
+        
+        <h2>Steps</h2>
+        <ol>
+            <li>Back up your data</li>
+            <li>Restart in Recovery Mode (⌘ + R)</li>
+            <li>Erase drive with Disk Utility</li>
+            <li>Install macOS</li>
+            <li>Restore from backup</li>
+        </ol>
+    `
+};
+
+function showGuide(guideName) {
+    const content = guides[guideName] || '<h1>Guide Not Found</h1>';
+    document.getElementById('guideContent').innerHTML = content;
+    
+    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-guide-detail').classList.add('active');
+}
+
+function backToGuides() {
+    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-guides').classList.add('active');
+}
+
+// Initialize games
+renderGames();
+</script>
+
+
+</body>
+</html>
